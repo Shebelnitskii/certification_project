@@ -1,15 +1,16 @@
-from django.shortcuts import render
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 from network.models import NetworkNode
+from network.permissions import IsActiveOwner
 from network.serializers import NetworkNodeSerializer
 
 
 # Create your views here.
 
-
 class NetworkNodeListAPI(generics.ListAPIView):
     queryset = NetworkNode.objects.all()
     serializer_class = NetworkNodeSerializer
+    permission_classes = [IsActiveOwner, IsAuthenticated]
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -23,18 +24,22 @@ class NetworkNodeListAPI(generics.ListAPIView):
 class NetworkNodeCreateAPI(generics.CreateAPIView):
     queryset = NetworkNode.objects.all()
     serializer_class = NetworkNodeSerializer
+    permission_classes = [IsActiveOwner]
 
 
 class NetworkNodeDetailAPI(generics.RetrieveAPIView):
     queryset = NetworkNode.objects.all()
     serializer_class = NetworkNodeSerializer
+    permission_classes = [IsActiveOwner, IsAuthenticated]
 
 
 class NetworkNodeUpdateAPI(generics.UpdateAPIView):
     queryset = NetworkNode.objects.all()
     serializer_class = NetworkNodeSerializer
+    permission_classes = [IsActiveOwner]
 
 
 class NetworkNodeDeleteAPI(generics.DestroyAPIView):
     queryset = NetworkNode.objects.all()
     serializer_class = NetworkNodeSerializer
+    permission_classes = [IsActiveOwner]

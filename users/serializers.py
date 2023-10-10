@@ -6,7 +6,7 @@ class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
     class Meta:
         model = User
-        fields = ('id', 'email', 'password', 'phone', 'is_active', 'is_staff')
+        fields = ('id', 'email', 'password', 'phone', 'is_active')
 
     def create(self, validated_data):
         """ Хеширование пароля при создании нового пользователя в БД """
