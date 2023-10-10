@@ -1,8 +1,5 @@
 from rest_framework import serializers
-
 from network.models import NetworkNode, Contact, Product
-
-
 
 
 class ContactSerializer(serializers.ModelSerializer):

@@ -18,15 +18,18 @@ class UserDetailAPI(generics.RetrieveAPIView):
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
+
 class UserCreateAPI(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
+
 class UserUpdateAPI(generics.UpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsOwnerOrModerator]
+
 
 class UserDeleteAPI(generics.DestroyAPIView):
     queryset = User.objects.all()
