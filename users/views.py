@@ -1,5 +1,6 @@
 from rest_framework import generics
 from .models import User
+from .permissions import IsOwnerOrModerator
 from .serializers import UserSerializer
 
 
@@ -20,7 +21,9 @@ class UserCreateAPI(generics.CreateAPIView):
 class UserUpdateAPI(generics.UpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [IsOwnerOrModerator]
 
 class UserDeleteAPI(generics.DestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [IsOwnerOrModerator]
