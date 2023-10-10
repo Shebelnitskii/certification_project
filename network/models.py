@@ -47,11 +47,13 @@ class NetworkNode(models.Model):
         return self.name
 
     def product_count(self):
+        """ Вывод количества товаров у конкретного поставщика """
         return self.products.count()
 
     product_count.short_description = 'Количество товаров'
 
     def get_level(self):
+        """ Подсчёт уровня поставщика, завод всегда по умолчанию 0-го уровня """
         if self.node_type == 'Завод':
             return 0
         elif self.supplier:

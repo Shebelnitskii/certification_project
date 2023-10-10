@@ -26,11 +26,13 @@ class NetworkNodeAdmin(admin.ModelAdmin):
     actions = ['clear_debt']
 
     def clear_debt(self, request, queryset):
+        """ Действие очещения задолженности у выбранных поставщиков """
         queryset.update(debt=0)
 
     clear_debt.short_description = 'Clear Debt for Selected Nodes'
 
     def supplier_link(self, obj):
+        """ Возвращение ссылки на поставщика"""
         if obj.supplier:
             url = reverse('admin:network_networknode_change', args=[obj.supplier.id])
             return format_html('<a href="{}">{}</a>', url, obj.supplier.name)

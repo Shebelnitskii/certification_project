@@ -7,5 +7,5 @@ class IsOwnerOrModerator(BasePermission):
         if request.user.is_staff:
             return True
 
-        # Разрешить доступ, если пользователь является владельцем урока (owner)
+        # Разрешить доступ, если пользователь является самим пользователем
         return request.user == obj
