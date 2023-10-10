@@ -11,7 +11,7 @@ class ContactSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ['name', 'model', 'release_date']
+        fields = ['name', 'model', 'release_date', 'manufacturer']
 
 
 class NetworkNodeSerializer(serializers.ModelSerializer):

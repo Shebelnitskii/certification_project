@@ -1,9 +1,9 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from network.models import NetworkNode
+from network.models import NetworkNode, Product, Contact
 from network.permissions import IsActiveOwner
-from network.serializers import NetworkNodeSerializer
+from network.serializers import NetworkNodeSerializer, ProductSerializer, ContactSerializer
 
 
 # Create your views here.
@@ -50,4 +50,69 @@ class NetworkNodeDeleteAPI(generics.DestroyAPIView):
     """ Удаление поставщика """
     queryset = NetworkNode.objects.all()
     serializer_class = NetworkNodeSerializer
+    permission_classes = [IsActiveOwner]
+
+class ProductListAPI(generics.ListAPIView):
+    """ Просмотр списка продуктов"""
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [IsActiveOwner]
+
+class ProductCreateAPI(generics.CreateAPIView):
+    """ Создание продукта """
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [IsActiveOwner]
+
+class ProductDetailAPI(generics.RetrieveAPIView):
+    """ Просмотр деталей конкретного продукта """
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [IsActiveOwner]
+
+class ProductUpdateAPI(generics.UpdateAPIView):
+    """ Обновление данных о продукте """
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [IsActiveOwner]
+
+class ProductDeleteAPI(generics.DestroyAPIView):
+    """ Удаление продукта """
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [IsActiveOwner]
+
+
+class ContactListAPI(generics.ListAPIView):
+    """ Просмотр списка контактов"""
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer
+    permission_classes = [IsActiveOwner]
+
+
+class ContactCreateAPI(generics.CreateAPIView):
+    """ Создание контакта """
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer
+    permission_classes = [IsActiveOwner]
+
+
+class ContactDetailAPI(generics.RetrieveAPIView):
+    """ Просмотр деталей конкретного контакта """
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer
+    permission_classes = [IsActiveOwner]
+
+
+class ContactUpdateAPI(generics.UpdateAPIView):
+    """ Обновление данных о контакте """
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer
+    permission_classes = [IsActiveOwner]
+
+
+class ContactDeleteAPI(generics.DestroyAPIView):
+    """ Удаление контакта """
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer
     permission_classes = [IsActiveOwner]
