@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from network.models import NetworkNode
@@ -10,6 +11,7 @@ from network.serializers import NetworkNodeSerializer
 class NetworkNodeListAPI(generics.ListAPIView):
     queryset = NetworkNode.objects.all()
     serializer_class = NetworkNodeSerializer
+    filter_backends = [DjangoFilterBackend]
     permission_classes = [IsActiveOwner, IsAuthenticated]
 
     def get_queryset(self):

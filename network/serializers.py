@@ -1,9 +1,26 @@
 from rest_framework import serializers
 
-from network.models import NetworkNode
+from network.models import NetworkNode, Contact, Product
+
+
+
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = '__all__'
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = '__all__'
 
 
 class NetworkNodeSerializer(serializers.ModelSerializer):
+    contact = ContactSerializer()
+    products = ProductSerializer(many=True)
+
     class Meta:
         model = NetworkNode
         fields = '__all__'
